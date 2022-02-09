@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="pageTitle">USER LIST</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <p>USERS</p>
+                <!-- List group -->
+                <label>Total Records : ${totalRecords}</label>
+                <c:if test="${not empty users}">
+                    <ul id="resultList" class="list-group list-group-flush">
+                        <c:forEach var="user" begin="0" items="${users}">
+                            <li class="list-group-item">
+                                ${user.fullName}|${user.name}
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+
+                <c:if test="${not empty users}">
+                    <table style="border: 1px solid black;">
+                        <tr>
+                            <th>NAME</th>
+                            <th>FULL NAME</th>
+                        </tr>
+                        <c:forEach var="user" begin="0" items="${users}">
+                            <tr>
+                                <td>${user.name}</td>
+                                <td>${user.fullName}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:if>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+

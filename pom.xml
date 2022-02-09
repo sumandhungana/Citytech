@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>global.citytech.interns.crm</groupId>
+    <artifactId>customer-reln-mgmt</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <modules>
+        <module>platform</module>
+        <module>admin-web</module>
+        <module>admin-endpoints</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- Jakarta EE API -->
+        <jakartaee-api.version>9.1.0</jakartaee-api.version>
+        <!-- Jakarta MVD API -->
+        <jakarta-mvc.version>2.0.0</jakarta-mvc.version>
+        <!-- Eclipse Krazo -->
+        <krazo.version>2.0.0</krazo.version>
+
+        <!-- Maven Plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+        <crm-platform.version>1.0</crm-platform.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/jakarta.mvc/jakarta.mvc-api -->
+            <dependency>
+                <groupId>jakarta.mvc</groupId>
+                <artifactId>jakarta.mvc-api</artifactId>
+                <version>${jakarta-mvc.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.eclipse.krazo/krazo-resteasy -->
+            <dependency>
+                <groupId>org.eclipse.krazo</groupId>
+                <artifactId>krazo-core</artifactId>
+                <version>${krazo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.krazo</groupId>
+                <artifactId>krazo-resteasy</artifactId>
+                <version>${krazo.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
