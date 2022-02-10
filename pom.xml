@@ -27,9 +27,16 @@
         <!-- Eclipse Krazo -->
         <krazo.version>2.0.0</krazo.version>
 
+        <!-- Test Utilities -->
+        <junit.version>5.8.2</junit.version>
+        <mockito.version>4.3.1</mockito.version>
+        <assertj.version>3.22.0</assertj.version>
+
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+
+        <!-- Internal modules -->
         <crm-platform.version>1.0</crm-platform.version>
     </properties>
 
@@ -60,6 +67,34 @@
                 <groupId>org.eclipse.krazo</groupId>
                 <artifactId>krazo-resteasy</artifactId>
                 <version>${krazo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Mockito -->
+            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

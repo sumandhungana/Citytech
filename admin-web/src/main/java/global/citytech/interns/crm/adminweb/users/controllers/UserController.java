@@ -26,6 +26,18 @@ public class UserController {
         List<User> users = new ArrayList<>();
         users.add(new User("user1", "USER ONE"));
         users.add(new User("user2","USER TWO"));
+        users.add(new User("user3","USER THREE"));
+        models.put("totalRecords", users.size());
+        models.put("users", users);
+    }
+
+    @GET
+    @Path("list")
+    @View("users/list.xhtml")
+    public void getList2() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("user1", "USER ONE"));
+        users.add(new User("user2","USER TWO"));
         models.put("totalRecords", users.size());
         models.put("users", users);
     }
