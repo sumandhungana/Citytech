@@ -7,6 +7,7 @@ import jakarta.mvc.Controller;
 import jakarta.mvc.Models;
 import jakarta.mvc.View;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 
 import java.util.ArrayList;
@@ -31,15 +32,18 @@ public class UserController {
         models.put("users", users);
     }
 
+
+
     @GET
-    @Path("list")
-    @View("users/list.xhtml")
-    public void getList2() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("user1", "USER ONE"));
-        users.add(new User("user2","USER TWO"));
-        models.put("totalRecords", users.size());
-        models.put("users", users);
+    @Path("add")
+    @View("users/add.xhtml")
+    public void loadAddForm() {
+    }
+
+    @POST
+    public void add(User user) {
+        //do add
+        //redirect to list page
     }
 
 }
