@@ -1,10 +1,10 @@
 package global.citytech.interns.crm.adminendpoints.users.controllers;
 
-import global.citytech.interns.crm.adminendpoints.users.payloads.AddUserRequest;
-import global.citytech.interns.crm.adminendpoints.users.payloads.GetAllUsersRequest;
-import global.citytech.interns.crm.adminendpoints.users.payloads.dto.UserInfo;
-import global.citytech.interns.crm.adminendpoints.users.usecases.AddUserUseCase;
-import global.citytech.interns.crm.adminendpoints.users.usecases.GetAllUsersUseCase;
+import global.citytech.interns.crm.services.users.payloads.AddUserRequest;
+import global.citytech.interns.crm.services.users.payloads.GetAllUsersRequest;
+import global.citytech.interns.crm.services.users.payloads.dto.UserInfo;
+import global.citytech.interns.crm.services.users.usecases.AddUserUseCase;
+import global.citytech.interns.crm.services.users.usecases.GetAllUsersUseCase;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

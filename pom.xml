@@ -13,6 +13,7 @@
         <module>platform</module>
         <module>admin-web</module>
         <module>admin-endpoints</module>
+        <module>services</module>
     </modules>
 
     <properties>
@@ -38,6 +39,7 @@
 
         <!-- Internal modules -->
         <crm-platform.version>1.0</crm-platform.version>
+        <crm-services.version>1.0</crm-services.version>
     </properties>
 
     <dependencies>

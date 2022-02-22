@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="pageTitle">ADD FOO</ui:define>
+    <ui:define name="content">
+        <c:set var="formActionUrl" value="#{request.contextPath}/secured/foos"/>
+        <form id="form_add_foo" name="form_add_foo" action="${formActionUrl}" method="post">
+            <label>Name: </label>
+            <input id="name" name="name" type="text" value="#{instance.name}"/>
+
+
+            <button value="Add">Add</button>
+        </form>
+
+    </ui:define>
+</ui:composition>
+
+
