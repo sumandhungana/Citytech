@@ -2,14 +2,17 @@ package global.citytech.interns.crm.adminweb.foos.views;
 
 import global.citytech.interns.crm.adminweb.foos.models.Foo;
 import jakarta.mvc.binding.MvcBinding;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.FormParam;
 
 import java.io.Serializable;
 
-public class AddFooForm implements Foo, Serializable {
+public class EditFooForm implements Foo, Serializable {
+
+    @NotNull
+    @FormParam("id")
+    @MvcBinding
+    private String id;
 
     @NotNull
     //@Max(value = 100, message = "The name should not contain more than 100 characters.")
@@ -20,11 +23,12 @@ public class AddFooForm implements Foo, Serializable {
 
     @Override
     public String getId() {
-        return null;
+        return this.id;
     }
 
     @Override
     public void setId(String id) {
+        this.id = id;
     }
 
     @Override

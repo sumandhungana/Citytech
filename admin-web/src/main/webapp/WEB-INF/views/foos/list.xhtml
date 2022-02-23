@@ -14,11 +14,13 @@
                         <tr>
                             <th>SN</th>
                             <th>NAME</th>
+                            <th>OPTIONS</th>
                         </tr>
                         <c:forEach var="foo" begin="0" items="${foos}" varStatus="index">
                             <tr>
                                 <td>${index.count}</td>
                                 <td>${foo.name}</td>
+                                <td>LINK ${foo.id}</td>
                             </tr>
                         </c:forEach>
                     </table>
