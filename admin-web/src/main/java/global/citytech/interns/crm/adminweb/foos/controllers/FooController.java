@@ -2,32 +2,28 @@ package global.citytech.interns.crm.adminweb.foos.controllers;
 
 import global.citytech.interns.crm.adminweb.foos.converters.FooPayloadConverter;
 import global.citytech.interns.crm.adminweb.foos.models.Foo;
-import global.citytech.interns.crm.adminweb.foos.models.FooDto;
 import global.citytech.interns.crm.adminweb.foos.views.AddFooForm;
 import global.citytech.interns.crm.adminweb.foos.views.EditFooForm;
 import global.citytech.interns.crm.platform.usecases.UseCaseContext;
-import global.citytech.interns.crm.services.foos.payloads.AddFooRequest;
-import global.citytech.interns.crm.services.foos.payloads.GetAllFoosRequest;
-import global.citytech.interns.crm.services.foos.payloads.GetAllFoosResponse;
+import global.citytech.interns.crm.services.foos.payloads.*;
 import global.citytech.interns.crm.services.foos.payloads.domains.FooInfo;
 import global.citytech.interns.crm.services.foos.usecases.AddFooUseCase;
+import global.citytech.interns.crm.services.foos.usecases.EditFooUseCase;
 import global.citytech.interns.crm.services.foos.usecases.GetAllFoosUseCase;
+import global.citytech.interns.crm.services.foos.usecases.GetFooUseCase;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.Controller;
 import jakarta.mvc.Models;
-import jakarta.mvc.View;
 import jakarta.mvc.binding.BindingResult;
 import jakarta.mvc.binding.ParamError;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 @Path("foos")
 @Controller
@@ -45,7 +41,13 @@ public class FooController {
     private BindingResult validationResult;
 
     @Inject
+    private GetFooUseCase getFooUseCase;
+
+    @Inject
     private AddFooUseCase addFooUseCase;
+
+    @Inject
+    private EditFooUseCase editFooUseCase;
 
     @Inject
     private GetAllFoosUseCase getAllFoosUseCase;
@@ -53,8 +55,10 @@ public class FooController {
     public FooController() {
     }
 
-    public FooController(AddFooUseCase addFooUseCase, GetAllFoosUseCase getAllFoosUseCase) {
+    public FooController(GetFooUseCase getFooUseCase, AddFooUseCase addFooUseCase, EditFooUseCase editFooUseCase, GetAllFoosUseCase getAllFoosUseCase) {
+        this.getFooUseCase = getFooUseCase;
         this.addFooUseCase = addFooUseCase;
+        this.editFooUseCase = editFooUseCase;
         this.getAllFoosUseCase = getAllFoosUseCase;
     }
 
@@ -109,18 +113,34 @@ public class FooController {
 
     @GET
     @Path("{id}/edit")
-    public String loadEditForm() {
-        EditFooForm form = new EditFooForm();
-        form.setId("1001");
-        form.setName("TEST");
-        models.put("instance", form);
+    public String loadEditForm(@PathParam("id") String id) {
+        GetFooRequest request = new GetFooRequest();
+        request.setId(id);
+        GetFooResponse response = this.getFooUseCase.execute(UseCaseContext.emptyContext(), request);
+
+        FooInfo info = response.getFooInfo();
+        FooPayloadConverter payloadConverter = new FooPayloadConverter();
+        Foo fooForm  = payloadConverter.toResponse(info);
+        models.put("instance", fooForm);
         return MODIFY_PAGE;
     }
 
-    @PUT
+    @POST
     @Path("{id}")
-    public Response update(@Valid @BeanParam AddFooForm form) {
-        return Response.ok().build();
+    public Response update(@PathParam("id") String id, @Valid @BeanParam EditFooForm form) {
+        System.out.println("HERE 1");
+        if (validationResult.isFailed()) {
+            System.out.println("HERE 2");
+            return Response.status(Response.Status.BAD_REQUEST).entity(MODIFY_PAGE).build();
+        }
+        System.out.println("HERE 3");
+        EditFooRequest editFooRequest = new EditFooRequest();
+        editFooRequest.setId(form.getId());
+        editFooRequest.setName(form.getName());
+        this.editFooUseCase.execute(UseCaseContext.emptyContext(), editFooRequest);
+        //redirect to list page
+        System.out.println("HERE 4");
+        return Response.ok("redirect:foos").build();
     }
 
 }

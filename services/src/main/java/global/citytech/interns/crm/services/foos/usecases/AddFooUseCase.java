@@ -2,6 +2,7 @@ package global.citytech.interns.crm.services.foos.usecases;
 
 import global.citytech.interns.crm.platform.usecases.UseCase;
 import global.citytech.interns.crm.platform.usecases.UseCaseContext;
+import global.citytech.interns.crm.platform.utils.HelperUtils;
 import global.citytech.interns.crm.services.foos.entities.FooEntity;
 import global.citytech.interns.crm.services.foos.entities.converters.FooEntityConverter;
 import global.citytech.interns.crm.services.foos.payloads.AddFooRequest;
@@ -27,11 +28,11 @@ public class AddFooUseCase implements UseCase<AddFooRequest, AddFooResponse> {
     @Override
     public AddFooResponse execute(UseCaseContext context, AddFooRequest request){
         this.validateRequest(request);
-        request.setId(LocalDateTime.now().toString());
+        request.setId(HelperUtils.generateRandomId());
 
         FooEntityConverter entityConverter = new FooEntityConverter();
         FooEntity entity = entityConverter.toEntity(request);
-        FooEntity addedEntity = this.fooRepository.add(entity);
+        FooEntity addedEntity = this.fooRepository.create(entity);
         return new AddFooResponse(addedEntity.getId());
     }
 

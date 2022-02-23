@@ -20,7 +20,12 @@
                             <tr>
                                 <td>${index.count}</td>
                                 <td>${foo.name}</td>
-                                <td>LINK ${foo.id}</td>
+                                <td>
+                                    <c:set var="editUrl" value="#{request.contextPath}/secured/foos/#{foo.id}/edit" />
+                                    <a href="${editUrl}">
+                                        EDIT
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>

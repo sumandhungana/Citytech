@@ -11,7 +11,6 @@ public class EditFooForm implements Foo, Serializable {
 
     @NotNull
     @FormParam("id")
-    @MvcBinding
     private String id;
 
     @NotNull

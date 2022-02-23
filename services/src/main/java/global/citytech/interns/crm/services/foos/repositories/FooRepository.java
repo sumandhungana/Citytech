@@ -19,8 +19,19 @@ public class FooRepository {
         return this.tempUsers;
     }
 
-    public FooEntity add(FooEntity entity){
+    public FooEntity create(FooEntity entity){
         System.out.println("ADDED Foo " + entity.getName());
+        this.tempUsers.add(entity);
+        return entity;
+    }
+
+    public FooEntity findOne(String id){
+        return this.tempUsers.stream().filter(i->id.equals(i.getId())).findFirst().orElse(null);
+    }
+
+    public FooEntity update(FooEntity entity){
+        System.out.println("Updated Foo " + entity.getName());
+        this.tempUsers.remove(new FooEntity(entity.getId(), null));
         this.tempUsers.add(entity);
         return entity;
     }
