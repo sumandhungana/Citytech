@@ -4,6 +4,7 @@ import global.citytech.interns.crm.adminweb.foos.converters.FooPayloadConverter;
 import global.citytech.interns.crm.adminweb.foos.models.Foo;
 import global.citytech.interns.crm.adminweb.foos.models.FooDto;
 import global.citytech.interns.crm.adminweb.foos.views.AddFooForm;
+import global.citytech.interns.crm.adminweb.foos.views.EditFooForm;
 import global.citytech.interns.crm.platform.usecases.UseCaseContext;
 import global.citytech.interns.crm.services.foos.payloads.AddFooRequest;
 import global.citytech.interns.crm.services.foos.payloads.GetAllFoosRequest;
@@ -19,10 +20,7 @@ import jakarta.mvc.View;
 import jakarta.mvc.binding.BindingResult;
 import jakarta.mvc.binding.ParamError;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.BeanParam;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
@@ -66,6 +64,11 @@ public class FooController {
         GetAllFoosResponse response = this.getAllFoosUseCase.execute(UseCaseContext.emptyContext(), request);
 
         FooPayloadConverter payloadConverter = new FooPayloadConverter();
+
+        if(response == null){
+            return  null;
+        }
+
         List<Foo> foos = payloadConverter.toResponseList(response.list());
         models.put("foos", foos);
         return LIST_PAGE;
@@ -88,8 +91,9 @@ public class FooController {
                     .forEach((ParamError t) -> {
                         errors.put(t.getParamName(), t.getMessage());
                     });
+            System.out.println("ERRORS = " + errors);
             models.put("message", "ERROR:"+ errors);
-            models.put("task", form);
+            models.put("instance", form);
             return Response.status(Response.Status.BAD_REQUEST).entity(ADD_PAGE).build();
         }
         //do add
@@ -101,6 +105,22 @@ public class FooController {
         this.addFooUseCase.execute(UseCaseContext.emptyContext(), addFooRequest);
         //redirect to list page
         return Response.ok("redirect:foos").build();
+    }
+
+    @GET
+    @Path("{id}/edit")
+    public String loadEditForm() {
+        EditFooForm form = new EditFooForm();
+        form.setId("1001");
+        form.setName("TEST");
+        models.put("instance", form);
+        return MODIFY_PAGE;
+    }
+
+    @PUT
+    @Path("{id}")
+    public Response update(@Valid @BeanParam AddFooForm form) {
+        return Response.ok().build();
     }
 
 }

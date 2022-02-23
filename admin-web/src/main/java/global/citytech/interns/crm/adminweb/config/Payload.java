@@ -1,4 +1,6 @@
 package global.citytech.interns.crm.adminweb.config;
 
-public interface Payload {
+import java.io.Serializable;
+
+public interface Payload extends Serializable {
 }
