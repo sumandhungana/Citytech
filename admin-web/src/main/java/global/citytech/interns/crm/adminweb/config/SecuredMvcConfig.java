@@ -1,5 +1,6 @@
 package global.citytech.interns.crm.adminweb.config;
 
+import global.citytech.interns.crm.adminweb.foos.controllers.FooController;
 import global.citytech.interns.crm.adminweb.users.controllers.UserController;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
@@ -13,6 +14,7 @@ public class SecuredMvcConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
+        classes.add(FooController.class);
         classes.add(UserController.class);
         return classes;
     }
