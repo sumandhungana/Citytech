@@ -5,9 +5,10 @@
 
     <ui:define name="pageTitle">EDIT FOO</ui:define>
     <ui:define name="content">
-        <c:set var="formActionUrl" value="#{request.contextPath}/secured/foos"/>
+        <c:set var="formActionUrl" value="#{request.contextPath}/secured/foos/#{instance.id}"/>
         <form id="form_edit_foo" name="form_edit_foo" action="${formActionUrl}" method="post">
-            <input id="item_id" type="hidden" value="#{instance.id}"/>
+            <input id="id" name="id" type="hidden" value="#{instance.id}"/>
+            <input type="hidden" name="_method" value="PUT"/>
             <label>Name: </label>
             <input id="name" name="name" type="text" value="#{instance.name}"/>
 
