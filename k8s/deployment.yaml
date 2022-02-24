@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm
+  labels:
+    app: crm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crm
+  template:
+    metadata:
+      labels:
+        app: crm
+    spec:
+      containers:
+        - name: crm-pod
+          image: reg.citytech.global/crm/crm:${BUILD_NUMBER}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol : TCP
+          env:
+            - name: JNDI_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: JNDI_NAME
+            - name: DS_POOL_NAME
+                valueFrom:
+                  secretKeyRef:
+                    name: crm-secret
+                    key: DS_POOL_NAME
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: DB_PORT
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: DB_NAME
+            - name: DB_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: DB_USER_NAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: crm-secret
+                  key: DB_PASSWORD
+            - name: JVM_OPTS
+              value: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=80"
+          resources:
+            limits:
+              memory: 1500G
+            requests:
+              memory: 500Mi
+          livenessProbe:
+            httpGet:
+              path: /admin-endpoints/v1/ping
+              port: 8080
+            initialDelaySeconds: 45
+            periodSeconds: 45
+            timeoutSeconds: 45
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /admin-endpoints/v1/ping
+              port: 8080
+            initialDelaySeconds: 45
+            periodSeconds: 45
+            timeoutSeconds: 45
