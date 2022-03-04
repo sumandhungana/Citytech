@@ -1,29 +1,22 @@
 package global.citytech.interns.crm.services.foos.entities;
-/*
+
+import global.citytech.interns.crm.services.foos.entities.api.FooEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-*/
 
-import global.citytech.interns.crm.platform.repositories.Entity;
 
 import java.util.Objects;
 
-//@Entity
-//@Table(name="foos")
-public class FooEntity implements Entity {
-    //@Id
+@Entity
+@Table(name="foos")
+public class FooJPAEntity implements FooEntity {
+    @Id
     private String id;
+
+    @Column(name="name", length = 100)
     private String name;
-
-    public FooEntity() {
-    }
-
-    public FooEntity(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public String getId() {
         return id;
@@ -45,7 +38,7 @@ public class FooEntity implements Entity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FooEntity fooEntity = (FooEntity) o;
+        FooJPAEntity fooEntity = (FooJPAEntity) o;
         return Objects.equals(getId(), fooEntity.getId());
     }
 

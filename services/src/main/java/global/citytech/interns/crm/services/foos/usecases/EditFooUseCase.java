@@ -2,13 +2,17 @@ package global.citytech.interns.crm.services.foos.usecases;
 
 import global.citytech.interns.crm.platform.usecases.UseCase;
 import global.citytech.interns.crm.platform.usecases.UseCaseContext;
-import global.citytech.interns.crm.services.foos.entities.FooEntity;
+import global.citytech.interns.crm.services.foos.entities.FooJPAEntity;
+import global.citytech.interns.crm.services.foos.entities.api.FooEntity;
 import global.citytech.interns.crm.services.foos.entities.converters.FooEntityConverter;
 import global.citytech.interns.crm.services.foos.payloads.EditFooRequest;
 import global.citytech.interns.crm.services.foos.payloads.EditFooResponse;
 import global.citytech.interns.crm.services.foos.repositories.FooRepository;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
+
+import java.util.Optional;
 
 @Named
 public class EditFooUseCase implements UseCase<EditFooRequest, EditFooResponse> {
@@ -23,6 +27,7 @@ public class EditFooUseCase implements UseCase<EditFooRequest, EditFooResponse> 
     }
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public EditFooResponse execute(UseCaseContext context, EditFooRequest request){
         if(!this.validateRequest(request)){
             return null;
@@ -30,8 +35,8 @@ public class EditFooUseCase implements UseCase<EditFooRequest, EditFooResponse> 
 
         FooEntityConverter entityConverter = new FooEntityConverter();
         FooEntity entity = entityConverter.toEntity(request);
-        FooEntity updatedEntity = this.fooRepository.update(entity);
-        return new EditFooResponse(updatedEntity.getId());
+        Optional<FooEntity> updatedEntity = this.fooRepository.update(entity);
+        return new EditFooResponse(updatedEntity.get().getId());
     }
 
     private boolean validateRequest(EditFooRequest request){
