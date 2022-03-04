@@ -2,6 +2,7 @@ package global.citytech.interns.crm.adminendpoints;
 
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersRequest;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

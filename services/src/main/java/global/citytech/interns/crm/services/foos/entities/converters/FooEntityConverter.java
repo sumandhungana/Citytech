@@ -1,6 +1,7 @@
 package global.citytech.interns.crm.services.foos.entities.converters;
 
-import global.citytech.interns.crm.services.foos.entities.FooEntity;
+import global.citytech.interns.crm.services.foos.entities.FooJPAEntity;
+import global.citytech.interns.crm.services.foos.entities.api.FooEntity;
 import global.citytech.interns.crm.services.foos.payloads.domains.FooInfo;
 
 import java.util.Collections;
@@ -22,7 +23,7 @@ public class FooEntityConverter {
         if(info == null){
             return null;
         }
-        FooEntity entity = new FooEntity();
+        FooEntity entity = new FooJPAEntity();
         entity.setId(info.getId());
         entity.setName(info.getName());
         return entity;
