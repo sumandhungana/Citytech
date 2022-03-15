@@ -6,10 +6,12 @@ import global.citytech.interns.crm.services.foos.entities.converters.FooEntityCo
 import global.citytech.interns.crm.services.foos.payloads.GetAllFoosRequest;
 import global.citytech.interns.crm.services.foos.payloads.GetAllFoosResponse;
 import global.citytech.interns.crm.services.foos.repositories.FooRepository;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
+@RequestScoped
 public class GetAllFoosUseCase implements UseCase<GetAllFoosRequest, GetAllFoosResponse> {
 
     private FooRepository fooRepository;
