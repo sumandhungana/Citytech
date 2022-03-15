@@ -20,8 +20,10 @@ public class FooEntityConverter {
         FooInfo info = new FooInfo();
         info.setId(entity.getId());
         info.setName(entity.getName());
+        System.out.println("Adding items ... " + entity.getDetails() );
         if(entity.getDetails() != null && !entity.getDetails().isBlank()){
-            List<FooDetailEntity> fooDetailEntities = JsonUtils.fromJsonToList(entity.getDetails(), FooDetailEntity.class);
+            List<FooDetailJPAEntity> fooDetailEntities = JsonUtils.fromJsonToList(entity.getDetails(), FooDetailJPAEntity.class);
+            System.out.println("Adding items ... "+fooDetailEntities.size());
             info.setDetails(fooDetailEntities.stream().map(i-> this.toDetail(i)).collect(Collectors.toList()));
         }
         return info;
@@ -35,7 +37,7 @@ public class FooEntityConverter {
         entity.setId(info.getId());
         entity.setName(info.getName());
         if(info.getDetails() != null && !info.getDetails().isEmpty()){
-            entity.setDetails(JsonUtils.toJsonObj(info));
+            entity.setDetails(JsonUtils.toJsonObj(info.getDetails()));
         }
         return entity;
     }
