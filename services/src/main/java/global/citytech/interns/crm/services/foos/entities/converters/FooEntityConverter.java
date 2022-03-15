@@ -1,7 +1,11 @@
 package global.citytech.interns.crm.services.foos.entities.converters;
 
+import global.citytech.interns.crm.platform.utils.JsonUtils;
+import global.citytech.interns.crm.services.foos.entities.FooDetailJPAEntity;
 import global.citytech.interns.crm.services.foos.entities.FooJPAEntity;
+import global.citytech.interns.crm.services.foos.entities.api.FooDetailEntity;
 import global.citytech.interns.crm.services.foos.entities.api.FooEntity;
+import global.citytech.interns.crm.services.foos.payloads.domains.FooDetailInfo;
 import global.citytech.interns.crm.services.foos.payloads.domains.FooInfo;
 
 import java.util.Collections;
@@ -16,6 +20,10 @@ public class FooEntityConverter {
         FooInfo info = new FooInfo();
         info.setId(entity.getId());
         info.setName(entity.getName());
+        if(entity.getDetails() != null && !entity.getDetails().isBlank()){
+            List<FooDetailEntity> fooDetailEntities = JsonUtils.fromJsonToList(entity.getDetails(), FooDetailEntity.class);
+            info.setDetails(fooDetailEntities.stream().map(i-> this.toDetail(i)).collect(Collectors.toList()));
+        }
         return info;
     }
 
@@ -26,6 +34,9 @@ public class FooEntityConverter {
         FooEntity entity = new FooJPAEntity();
         entity.setId(info.getId());
         entity.setName(info.getName());
+        if(info.getDetails() != null && !info.getDetails().isEmpty()){
+            entity.setDetails(JsonUtils.toJsonObj(info));
+        }
         return entity;
     }
 
@@ -34,5 +45,17 @@ public class FooEntityConverter {
             return Collections.EMPTY_LIST;
         }
         return entities.stream().map(item-> this.fromEntity(item)).collect(Collectors.toList());
+    }
+
+    private FooDetailEntity toDetail(FooDetailInfo detailInfo){
+        FooDetailEntity detail = new FooDetailJPAEntity();
+        detail.setAlias(detailInfo.getAlias());
+        return detail;
+    }
+
+    private FooDetailInfo toDetail(FooDetailEntity detailEntity){
+        FooDetailInfo detailInfo = new FooDetailInfo();
+        detailInfo.setAlias(detailEntity.getAlias());
+        return detailInfo;
     }
 }

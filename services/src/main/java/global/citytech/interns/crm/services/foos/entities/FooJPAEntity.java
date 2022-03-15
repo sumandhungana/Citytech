@@ -1,5 +1,6 @@
 package global.citytech.interns.crm.services.foos.entities;
 
+import global.citytech.interns.crm.services.foos.entities.api.FooDetailEntity;
 import global.citytech.interns.crm.services.foos.entities.api.FooEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +19,9 @@ public class FooJPAEntity implements FooEntity {
 
     @Column(name="name", length = 100)
     private String name;
+
+    @Column(name="detail", columnDefinition = "text")
+    private String details;
 
     public String getId() {
         return id;
@@ -32,6 +37,15 @@ public class FooJPAEntity implements FooEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     @Override

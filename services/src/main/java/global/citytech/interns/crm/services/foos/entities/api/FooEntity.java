@@ -10,4 +10,9 @@ public interface FooEntity extends Entity {
     String getName();
 
     void setName(String name);
+
+    String getDetails();
+
+    void setDetails(String details);
+
 }
