@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="title">
+        ADD FOO
+    </ui:define>
+
+    <ui:define name="description">
+        A page description
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form id="form_add_foo" name="form_add_foo" prependId="false" >
+            <label>Name: </label>
+            <h:inputText id="name" value="#{fooController.instance.name}" />
+
+            <p:commandButton ajax="true" value="Add Detail" onclick="PF('dlgAddDetail').show();"
+                             actionListener="#{fooController.onLoadAddDetail}" update=":dlg_add_detail_form">
+            </p:commandButton>
+            <p:dataTable id="dt_foo_detail" var="detail" value="#{fooController.instance.details}"
+                         rowIndexVar="index">
+                <p:column headerText="SN">
+                    <h:outputText value="#{index+1}" />
+                </p:column>
+
+                <p:column headerText="Alias">
+                    <h:outputText value="#{detail.alias}" />
+                </p:column>
+            </p:dataTable>
+            <h:commandButton id="btnSave" value="Save" action="#{fooController.onSave}"/>
+        </h:form>
+
+        <ui:include src="detail.xhtml"></ui:include>
+    </ui:define>
+</ui:composition>
+
+

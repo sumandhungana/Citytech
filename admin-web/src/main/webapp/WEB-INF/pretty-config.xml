@@ -1,0 +1,24 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <url-mapping id="foos">
+        <pattern value="/secured/foos" />
+        <view-id value="/faces/foos/list.jsf" />
+        <action>#{fooController.loadList}</action>
+    </url-mapping>
+
+    <url-mapping id="foos-add">
+        <pattern value="/secured/foos/new" />
+        <view-id value="/faces/foos/add.jsf" />
+        <action>#{fooController.loadAddForm}</action>
+    </url-mapping>
+
+    <url-mapping id="foos-edit">
+        <pattern value="/secured/foos/#{fooController.selectedItem}/edit" />
+        <view-id value="/faces/foos/edit.jsf" />
+        <action>#{fooController.loadSelectedItem}</action>
+    </url-mapping>
+
+</pretty-config>
