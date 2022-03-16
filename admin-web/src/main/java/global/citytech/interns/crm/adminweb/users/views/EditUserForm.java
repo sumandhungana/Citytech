@@ -1,18 +1,21 @@
 package global.citytech.interns.crm.adminweb.users.views;
 
-import global.citytech.interns.crm.adminweb.foos.models.Foo;
-import global.citytech.interns.crm.adminweb.users.models.User;
+
 import global.citytech.interns.crm.adminweb.users.models.Users;
+
 import jakarta.mvc.binding.MvcBinding;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.FormParam;
 
 import java.io.Serializable;
 
-public class AddUserForm implements Users, Serializable {
+public class EditUserForm implements Users, Serializable {
+
+    @NotNull
+    @FormParam("id")
+    @MvcBinding
+
+    private  String id;
 
     //@Max(value = 100, message = "The name should not contain more than 100 characters.")
     //@Min(value = 2, message = "The name should contain at least 2 characters")
@@ -43,11 +46,12 @@ public class AddUserForm implements Users, Serializable {
 
     @Override
     public String getId() {
-        return null;
+        return this.id;
     }
 
     @Override
     public void setId(String id) {
+        this.id = id;
     }
 
     @Override

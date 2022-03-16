@@ -14,7 +14,7 @@
                     <ul id="resultList" class="list-group list-group-flush">
                         <c:forEach var="user" begin="0" items="${users}">
                             <li class="list-group-item">
-                                ${user.fullName}|${user.name}
+                                ${user.fullname}|${user.userrole}
                             </li>
                         </c:forEach>
                     </ul>
@@ -23,13 +23,24 @@
                 <c:if test="${not empty users}">
                     <table style="border: 1px solid black;">
                         <tr>
-                            <th>NAME</th>
-                            <th>FULL NAME</th>
+                            <th>Full Name</th>
+                            <th>User Role</th>
+                            <th>User Email</th>
+                            <th>User Mobile</th>
+                            <th>Options</th>
                         </tr>
                         <c:forEach var="user" begin="0" items="${users}">
                             <tr>
-                                <td>${user.name}</td>
-                                <td>${user.fullName}</td>
+                                <td>${user.fullname}</td>
+                                <td>${user.userrole}</td>
+                                <td>${user.email}</td>
+                                <td>${user.mobile}</td>
+                                <td>
+                                    <c:set var="editUrl" value="#{request.contextPath}/secured/users/#{user.id}/edit" />
+                                    <a href="${editUrl}">
+                                        Edit
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>

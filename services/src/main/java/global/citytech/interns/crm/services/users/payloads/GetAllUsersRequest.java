@@ -1,4 +1,6 @@
 package global.citytech.interns.crm.services.users.payloads;
 
-public class GetAllUsersRequest {
+import global.citytech.interns.crm.platform.usecases.UseCaseRequest;
+
+public class GetAllUsersRequest implements UseCaseRequest {
 }

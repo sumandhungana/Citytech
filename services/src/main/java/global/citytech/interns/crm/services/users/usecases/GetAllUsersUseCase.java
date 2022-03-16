@@ -2,14 +2,12 @@ package global.citytech.interns.crm.services.users.usecases;
 
 import global.citytech.interns.crm.services.users.entities.converters.UserEntityConverter;
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersRequest;
+import global.citytech.interns.crm.platform.usecases.UseCaseContext;
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersResponse;
-import global.citytech.interns.crm.services.users.payloads.dto.UserInfo;
 import global.citytech.interns.crm.services.users.repositories.UserRepository;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Named
 public class GetAllUsersUseCase {
@@ -24,7 +22,7 @@ public class GetAllUsersUseCase {
         this.userRepository = userRepository;
     }
 
-    public GetAllUsersResponse execute(GetAllUsersRequest request){
+    public GetAllUsersResponse execute(UseCaseContext UseCaseContext ,GetAllUsersRequest request){
         this.validateRequest(request);
 
         UserEntityConverter entityConverter = new UserEntityConverter();
@@ -36,13 +34,5 @@ public class GetAllUsersUseCase {
         //validate fields
     }
 
-    private List<UserInfo> prepareUsers(){
-        List<UserInfo> users = new ArrayList<>();
-        users.add(new UserInfo("U001", "USER1", "USER ONE"));
-        users.add(new UserInfo("U002", "USER2", "USER TWO"));
-        users.add(new UserInfo("U003", "USER3", "USER THREE"));
-        users.add(new UserInfo("U004", "USER4", "USER FOUR"));
-        users.add(new UserInfo("U005", "USER5", "USER FIVE"));
-        return users;
-    }
+
 }

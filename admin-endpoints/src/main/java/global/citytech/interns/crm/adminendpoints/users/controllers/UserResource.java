@@ -1,6 +1,7 @@
 package global.citytech.interns.crm.adminendpoints.users.controllers;
 
 import global.citytech.interns.crm.services.users.payloads.AddUserRequest;
+import global.citytech.interns.crm.platform.usecases.UseCaseContext;
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersRequest;
 import global.citytech.interns.crm.services.users.payloads.dto.UserInfo;
 import global.citytech.interns.crm.services.users.usecases.AddUserUseCase;
@@ -32,14 +33,16 @@ public class UserResource {
     @GET
     public Response getAllUsers() {
         GetAllUsersRequest request = new GetAllUsersRequest();
-        return Response.ok(this.getAllUsersUseCase.execute(request).list()).build();
+        return Response.ok(this.getAllUsersUseCase.execute(UseCaseContext.emptyContext(),request).list()).build();
     }
 
     @POST
-    public Response addUser(UserInfo user){
+    public Response addUser(UserInfo info){
         AddUserRequest request = new AddUserRequest();
-        request.setName(user.getName());
-        request.setFullName(user.getFullName());
-        return Response.ok(this.addUserUseCase.execute(request)).build();
+        request.setFullname(info.getFullname());
+        request.setUserrole(info.getUserrole());
+        request.setEmail(info.getEmail());
+        request.setMobile(info.getMobile());
+        return Response.ok(this.addUserUseCase.execute(UseCaseContext.emptyContext() , request)).build();
     }
 }

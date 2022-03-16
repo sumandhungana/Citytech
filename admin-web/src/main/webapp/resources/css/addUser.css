@@ -1,0 +1,95 @@
+body{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+	.container{
+	    width: 400px;
+	    height: auto;
+	    border: 2px solid;
+	    border-color:  rgba(76,190,164,1);
+	    background-color: white;
+	    display: flex;
+	    flex-direction: column;
+	    padding: 20px;
+	    justify-content:space-around;
+	}
+
+	.user_form label{
+		display:flex;
+		padding-left: 0px!important;
+		padding: 10px;
+		font-weight: bold;
+		font-family: 'Arial Narrow', Arial, sans-serif;
+	}
+	.user_form input{
+		margin-bottom: 20px;
+		border: 2px solid black;
+		font-size: 15px;
+		padding: 5px;
+		border-radius: 5px;
+		width: 250px;
+	}
+	.user_form hr{
+		background-color: black;
+	}
+	.user_form #cancel_btn,.user_form #create_btn{
+		padding: 5px 35px 5px 35px;
+		border-radius: 10px;
+		color: white;
+		border: none;
+		margin: 20px 0px 15px 0px;
+	}
+	.user_form #cancel_btn{
+
+		background-color: red;
+	}
+	.user_form #create_btn{
+		background-color: rgba(8,68,164,1);
+		margin-left: 30px;
+	}
+	.user_form hr{
+		border: 1px solid black;
+	}
+
+            select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border: 2px solid black;
+   background-image: none;
+   flex: 1;
+   font-size: 15px;
+   padding: 5px;
+   border-radius: 5px;
+   margin-bottom: 20px;
+}
+.select {
+   position: relative;
+   display: flex;
+   width: 260px;
+   line-height: 1.7;
+   overflow: hidden;
+}
+.select::after {
+   content: "\25Bc";
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0 0.3em;
+   background: rgba(76,190,164,1);
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+   border:2px solid black;
+   border-radius: 0px 5px 5px 0px;
+   color: white;
+   font-size: 21px;
+
+}
+
+

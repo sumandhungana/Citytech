@@ -2,13 +2,13 @@ package global.citytech.interns.crm.services.users.payloads;
 
 import global.citytech.interns.crm.platform.usecases.UseCaseResponse;
 
-public class AddUserResponse implements UseCaseResponse {
+public class EditUserResponse implements UseCaseResponse {
     private String id;
 
-    public AddUserResponse() {
+    public EditUserResponse() {
     }
 
-    public AddUserResponse(String id) {
+    public EditUserResponse(String id) {
         this.id = id;
     }
 

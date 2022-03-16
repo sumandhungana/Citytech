@@ -1,5 +1,6 @@
 package global.citytech.interns.crm.services.usecases;
 
+import global.citytech.interns.crm.platform.usecases.UseCaseContext;
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersRequest;
 import global.citytech.interns.crm.services.users.payloads.GetAllUsersResponse;
 import global.citytech.interns.crm.services.users.repositories.UserRepository;
@@ -28,7 +29,7 @@ class GetAllUsersUseCaseTest {
     @DisplayName("GetAllUsersUseCaseTest: shouldSucceedToGetAllUsersWhenNoFiltersApplied")
     void shouldSucceedToGetAllUsersWhenNoFiltersApplied() {
         GetAllUsersRequest request = new GetAllUsersRequest();
-        GetAllUsersResponse response = getAllUsersUseCase.execute(request);
+        GetAllUsersResponse response = getAllUsersUseCase.execute(UseCaseContext.emptyContext(),request);
         Assertions.assertNotNull(response);
         Assertions.assertNotNull(response.list());
         Assertions.assertEquals(0, response.list().size());

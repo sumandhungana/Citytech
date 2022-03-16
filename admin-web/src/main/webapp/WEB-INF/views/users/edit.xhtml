@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/layout/template.xhtml">
+    <ui:define name="content">
+        <div id="user_form_container">
+            <c:set var="formActionUrl" value="#{request.contextPath}/secured/users/#{instance.id}"/>
+            <form id="user_form" class="user_form" action="${formActionUrl}" method="post">
+                <label style="color: rgba(41,91,90,1);
+								font-weight: bold;
+								font-style: italic;
+								font-family: 'Arial Narrow', Arial, sans-serif;
+								font-size: 20px;">
+                    Edit User</label><hr/>
+                <input id="id" name="id" type="hidden" value="#{instance.id}"/>
+                <input type="hidden" name="_method" value="PUT"/>
+                <label>Full Name</label><br/>
+                <input type="text" name="fullname" value="#{instance.fullname}"/><hr/>
+                <label style="color: rgba(41,91,90,1);">User Role</label><br/>
+                <!--            <div class="select">-->
+                <!--                <select>-->
+                <!--                    <option selected=""></option>-->
+                <!--                    <option>Option One</option>-->
+                <!--                    <option>Option Two</option>-->
+                <!--                </select>-->
+                <!--            </div>-->
+                <input type="text" name="userrole" value="#{instance.userrole}"/>
+                <hr/>
+                <label>Email</label><br/>
+                <input type="text" name="email" value="#{instance.email}"/><hr/>
+                <label>Mobile</label><br/>
+                <input type="text" name="mobile" value="#{instance.mobile}"/><hr/>
+               <button id="create_btn" >Update</button>
+
+            </form>
+        </div>
+
+    </ui:define>
+</ui:composition>
+

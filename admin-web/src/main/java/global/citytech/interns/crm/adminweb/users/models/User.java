@@ -1,48 +1,50 @@
 package global.citytech.interns.crm.adminweb.users.models;
 
-public class User {
+public class User implements Users {
     private String id;
-    private String name;
-    private String fullName;
-    private String role;
+    private String fullname;
+    private String userrole;
+    private String email;
+    private String mobile;
 
-    public User() {
-    }
-
-    public User(String name, String fullName) {
-        this.name = name;
-        this.fullName = fullName;
-    }
-
+    @Override
     public String getId() {
         return id;
     }
-
+    @Override
     public void setId(String id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
+    @Override
+    public String getFullname() {
+        return fullname;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
-
-    public String getFullName() {
-        return fullName;
+    @Override
+    public String getUserrole() {
+        return userrole;
     }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    @Override
+    public void setUserrole(String userrole) {
+        this.userrole = userrole;
     }
-
-    public String getRole() {
-        return role;
+    @Override
+    public String getEmail() {
+        return email;
     }
-
-    public void setRole(String role) {
-        this.role = role;
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    @Override
+    public String getMobile() {
+        return mobile;
+    }
+    @Override
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
