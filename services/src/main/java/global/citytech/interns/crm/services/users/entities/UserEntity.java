@@ -1,7 +1,6 @@
 package global.citytech.interns.crm.services.users.entities;
 
 import global.citytech.interns.crm.platform.repositories.Entity;
-import global.citytech.interns.crm.services.foos.entities.FooEntity;
 
 import java.util.Objects;
 /*

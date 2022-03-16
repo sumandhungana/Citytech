@@ -33,21 +33,18 @@ public class FooController implements Serializable {
     FooDetail detailInstance;
     FooDetail selectedDetailInstance;
 
-    @Inject
     private GetAllFoosUseCase getAllFoosUseCase;
 
-    @Inject
     private GetFooUseCase getFooUseCase;
 
-    @Inject
     private AddFooUseCase addFooUseCase;
 
-    @Inject
     private EditFooUseCase editFooUseCase;
 
     public FooController() {
     }
 
+    @Inject
     public FooController(GetAllFoosUseCase getAllFoosUseCase, GetFooUseCase getFooUseCase, AddFooUseCase addFooUseCase, EditFooUseCase editFooUseCase) {
         this.getAllFoosUseCase = getAllFoosUseCase;
         this.getFooUseCase = getFooUseCase;

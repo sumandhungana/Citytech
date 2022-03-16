@@ -8,6 +8,7 @@ import global.citytech.interns.crm.services.foos.entities.converters.FooEntityCo
 import global.citytech.interns.crm.services.foos.payloads.EditFooRequest;
 import global.citytech.interns.crm.services.foos.payloads.EditFooResponse;
 import global.citytech.interns.crm.services.foos.repositories.FooRepository;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @Named
+@RequestScoped
 public class EditFooUseCase implements UseCase<EditFooRequest, EditFooResponse> {
     private FooRepository fooRepository;
 

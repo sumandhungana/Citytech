@@ -1,7 +1,5 @@
 package global.citytech.interns.crm.services.users.repositories;
 
-
-import global.citytech.interns.crm.services.foos.entities.FooEntity;
 import global.citytech.interns.crm.services.users.entities.UserEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 
