@@ -15,4 +15,6 @@ public interface FooEntity extends Entity {
 
     void setDetails(String details);
 
+
+
 }
