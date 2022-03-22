@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="title">
+        ADD USER
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="form_add_user" name="form_add_user" prependId="false" >
+            <label>User Name: </label>
+            <h:inputText id="name" value="#{userController.instance.name}" />
+            <label>User Email: </label>
+            <div class="p-field p-col-12 p-md-4">
+                <p:outputLabel for="@next" value="Basic"/>
+                <p:selectOneMenu id="option" value="#{selectOneMenuView.selectedOption}">
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItem itemLabel="Option1" itemValue="Option1"/>
+                    <f:selectItem itemLabel="Option2" itemValue="Option2"/>
+                    <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                    <f:facet name="footer">
+                        <p:divider styleClass="p-mt-0" />
+                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                    </f:facet>
+                </p:selectOneMenu>
+            </div>
+
+            <h:inputText id="name" value="#{userController.instance.email}" />
+            <h:commandButton id="btnSave" value="Save" action="#{userController.onSave}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+
