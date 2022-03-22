@@ -16,7 +16,8 @@ import jakarta.ws.rs.core.Response;
 @RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class FooResource {
+public class
+FooResource {
 
     private GetAllFoosUseCase getAllFoosUseCase;
     private AddFooUseCase addFooUseCase;

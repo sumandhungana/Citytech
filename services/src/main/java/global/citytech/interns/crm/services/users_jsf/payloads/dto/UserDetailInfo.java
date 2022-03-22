@@ -1,2 +1,4 @@
-package global.citytech.interns.crm.services.users_jsf.payloads.dto;public class UserDetailInfo {
+package global.citytech.interns.crm.services.users_jsf.payloads.dto;
+
+public class UserDetailInfo {
 }

@@ -1,2 +1,4 @@
-package global.citytech.interns.cms.adminwebjsf.popup.models;public class Popup {
+package global.citytech.interns.cms.adminwebjsf.popup.models;
+
+public class PopupDto {
 }

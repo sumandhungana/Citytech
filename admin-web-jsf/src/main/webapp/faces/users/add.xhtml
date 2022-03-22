@@ -2,6 +2,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/layout/template.xhtml">
 
     <ui:define name="title">
@@ -9,25 +10,49 @@
     </ui:define>
     <ui:define name="body">
         <h:form id="form_add_user" name="form_add_user" prependId="false" >
-            <label>User Name: </label>
-            <h:inputText id="name" value="#{userController.instance.name}" />
-            <label>User Email: </label>
             <div class="p-field p-col-12 p-md-4">
-                <p:outputLabel for="@next" value="Basic"/>
-                <p:selectOneMenu id="option" value="#{selectOneMenuView.selectedOption}">
+            <label>Name: </label>
+            <h:inputText id="name" value="#{userController.instance.name}" />
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+            <label>Role: </label>
+                <p:selectOneMenu id="role" value="#{userController.instance.role}">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItem itemLabel="Option1" itemValue="Option1"/>
-                    <f:selectItem itemLabel="Option2" itemValue="Option2"/>
-                    <f:selectItem itemLabel="Option3" itemValue="Option3"/>
+                    <f:selectItem itemLabel="SuperUser" itemValue="superuser"/>
+                    <f:selectItem itemLabel="Administrator" itemValue="Admin"/>
+                    <f:selectItem itemLabel="Developer" itemValue="Developer"/>
+                    <f:selectItem itemLabel="Compiler" itemValue="Compiler"/>
                     <f:facet name="footer">
                         <p:divider styleClass="p-mt-0" />
-                        <h:outputText value="3 options" style="font-weight:bold;"/>
+                        <h:outputText value="4  options" style="font-weight:bold;"/>
                     </f:facet>
                 </p:selectOneMenu>
             </div>
-
-            <h:inputText id="name" value="#{userController.instance.email}" />
-            <h:commandButton id="btnSave" value="Save" action="#{userController.onSave}"/>
+            <div class="p-field p-col-12 p-md-4">
+            <label>UserId: </label>
+            <h:inputText id="email" value="#{userController.instance.email}" />
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+            <label>StaffId: </label>
+            <h:inputText id="staffid" value="#{userController.instance.staffid}" />
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+            <label>Branch: </label>
+                <p:selectOneMenu id="branch" value="#{userController.instance.branch}">
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItem itemLabel="Kantipath" itemValue="kantipath"/>
+                    <f:selectItem itemLabel="Gairidhara" itemValue="gairidhara"/>
+                    <f:selectItem itemLabel="Lajimpat" itemValue="lajimpart"/>
+                    <f:selectItem itemLabel="lagankhel" itemValue="lagankhel"/>
+                    <f:facet name="footer">
+                        <p:divider styleClass="p-mt-0" />
+                        <h:outputText value="4  options" style="font-weight:bold;"/>
+                    </f:facet>
+                </p:selectOneMenu>
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+                <h:commandButton id="btnSave" value="Save" action="#{userController.onSave}"/>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

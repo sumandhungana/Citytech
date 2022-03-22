@@ -21,4 +21,21 @@
         <action>#{fooController.loadSelectedItem}</action>
     </url-mapping>
 
+    <url-mapping id="users">
+        <pattern value="/secured/users" />
+        <view-id value="/faces/users/list.jsf" />
+        <action>#{userController.loadList}</action>
+    </url-mapping>
+
+    <url-mapping id="users-add">
+        <pattern value="/secured/users/new" />
+        <view-id value="/faces/users/add.jsf" />
+        <action>#{userController.loadAddForm}</action>
+    </url-mapping>
+
+    <url-mapping id="users-edit">
+        <pattern value="/secured/users/#{userController.selectedItem}/edit" />
+        <view-id value="/faces/users/edit.jsf" />
+        <action>#{userController.loadSelectedItem}</action>
+    </url-mapping>
 </pretty-config>

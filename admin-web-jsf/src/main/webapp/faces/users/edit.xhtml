@@ -1,12 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="title">EDIT USERS</ui:define>
+
+    <ui:define name="body">
+        <h:form id="form_edit_users" name="form_edit_users" prependId="false" >
+            <label>Name: </label>
+            <h:inputText id="name" value="#{userController.instance.name}" />
+            <label>Role: </label>
+            <h:inputText id="role" value="#{userController.instance.role}" />
+            <label>Userid: </label>
+            <h:inputText id="email" value="#{userController.instance.email}" />
+            <label>Staffid: </label>
+            <h:inputText id="staffid" value="#{userController.instance.staffid}" />
+            <label>Branch: </label>
+            <h:inputText id="branch" value="#{userController.instance.branch}" />
+
+            <h:commandButton id="btnSave" value="Save" action="#{userController.onSave}"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

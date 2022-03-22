@@ -92,7 +92,7 @@ public class FooController implements Serializable {
 
     public void loadAddForm(){
         if(this.instance == null) {
-            this.instance = new FooDto();
+            this.     instance = new FooDto();
         }
     }
 
@@ -161,3 +161,5 @@ public class FooController implements Serializable {
     }
 
 }
+
+
