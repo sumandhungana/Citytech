@@ -1,5 +1,6 @@
 package global.citytech.interns.crm.adminendpoints.foos.controllers;
 
+import global.citytech.interns.crm.platform.clients.BaseResponse;
 import global.citytech.interns.crm.platform.usecases.UseCaseContext;
 import global.citytech.interns.crm.services.foos.payloads.AddFooRequest;
 import global.citytech.interns.crm.services.foos.payloads.GetAllFoosRequest;
@@ -34,13 +35,15 @@ FooResource {
     @GET
     public Response getAllFoos() {
         GetAllFoosRequest request = new GetAllFoosRequest();
-        return Response.ok(this.getAllFoosUseCase.execute(UseCaseContext.emptyContext(), request).list()).build();
+        return BaseResponse.ok(this.getAllFoosUseCase.execute(UseCaseContext.emptyContext(), request).list());
+        //return Response.ok(this.getAllFoosUseCase.execute(UseCaseContext.emptyContext(), request).list()).build();
     }
 
     @POST
     public Response addFoo(FooInfo info){
         AddFooRequest request = new AddFooRequest();
         request.setName(info.getName());
-        return Response.ok(this.addFooUseCase.execute(UseCaseContext.emptyContext(), request)).build();
+        return BaseResponse.ok(this.addFooUseCase.execute(UseCaseContext.emptyContext(), request));
+        //return Response.ok(this.addFooUseCase.execute(UseCaseContext.emptyContext(), request)).build();
     }
 }
